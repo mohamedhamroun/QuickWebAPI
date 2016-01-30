@@ -24,6 +24,18 @@ namespace AssWebApi.Controllers
             return "value";
         }
 
+        [Route("api/client/Login")]
+        public bool PostClientLogi(Client client)
+        {
+            if (!ModelState.IsValid)
+            {
+                return false;
+            }
+
+
+            return db.Clients.Where(c => c.cin.Equals(client.cin) && c.password.Equals(client.password)).Count() >0;
+        }
+
         // POST api/client
         public async Task<Client> Post(Client client)
         {
