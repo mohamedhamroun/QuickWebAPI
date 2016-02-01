@@ -15,6 +15,9 @@ namespace AssWebApi.Models
         public string email { get; set; }
         public string tel { get; set; }
         public string password { get; set; }
+        public string nature_veh { get; set; }
+        public string modele_veh { get; set; }
+        public string marque_veh { get; set; }
 
         public virtual ICollection<Alerte> Alertes { get; set; }
     }
