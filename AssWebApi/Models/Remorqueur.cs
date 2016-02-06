@@ -16,6 +16,8 @@ namespace AssWebApi.Models
         public string email { get; set; }
         public string tel { get; set; }
         public string password { get; set; }
+        public double longitude { get; set; }
+        public double latitude { get; set; }
 
         public virtual ICollection<Intervention> Interventions { get; set; }
     }

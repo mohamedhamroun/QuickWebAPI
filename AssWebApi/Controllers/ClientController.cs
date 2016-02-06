@@ -1,6 +1,8 @@
 ﻿using AssWebApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,13 +21,13 @@ namespace AssWebApi.Controllers
         }
 
         // GET api/client/5
-        public string Get(int id)
+        public async Task<Client> Get(int id)
         {
-            return "value";
+            return await db.Clients.FindAsync(id);
         }
 
         [Route("api/client/Login")]
-        public bool PostClientLogi(Client client)
+        public bool PostClientLogin(Client client)
         {
             if (!ModelState.IsValid)
             {
@@ -52,14 +54,52 @@ namespace AssWebApi.Controllers
             return client;
         }
 
-        // PUT api/client/5
-        public void Put(int id, [FromBody]string value)
+       [Route("api/client/Update/{cin}")]
+        public Client PutClient(string cin, Client Client)
         {
+            if (!ModelState.IsValid)
+            {
+                new Client();
+            }
+
+            if (cin != Client.cin)
+            {
+                new Client();
+            }
+
+            db.Entry(Client).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                
+            }
+
+            return Client;
         }
 
         // DELETE api/client/5
         public void Delete(int id)
         {
+        }
+
+         [Route("api/client/Remove/{cin}")]
+        public bool DeleteClient (string cin)
+        {
+            Client client = db.Clients.Find(cin);
+            if (client == null)
+            {
+                return false;
+            }
+           
+
+            db.Clients.Remove(client);
+            db.SaveChanges();
+
+            return true;
         }
     }
 }
