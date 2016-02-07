@@ -17,7 +17,7 @@ namespace AssWebApi.Controllers
         // GET api/Alerte
         public IEnumerable<Alerte> Get()
         {
-            return db.Alertes;
+            return db.Alertes.Include(a=>a.Client);
         }
 
 

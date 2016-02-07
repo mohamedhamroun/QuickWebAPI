@@ -20,10 +20,10 @@ namespace AssWebApi.Controllers
             return db.Clients;
         }
 
-        // GET api/client/5
-        public async Task<Client> Get(int id)
+         [Route("api/client/ByCin/{cin}")]
+        public async Task<Client> Get(string cin)
         {
-            return await db.Clients.FindAsync(id);
+            return await db.Clients.FindAsync(cin);
         }
 
         [Route("api/client/Alertes/{cin}")]

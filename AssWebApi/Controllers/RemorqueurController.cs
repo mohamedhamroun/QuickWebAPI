@@ -21,9 +21,10 @@ namespace AssWebApi.Controllers
         }
 
         // GET api/Remorqueur/5
-        public string Get(int id)
+        [Route("api/client/ByMatricule/{matricule}")]
+        public async Task<Remorqueur> Get(string matricule)
         {
-            return "value";
+            return await db.Remorqueurs.FindAsync(matricule);
         }
 
         [Route("api/Remorqueur/Login")]
