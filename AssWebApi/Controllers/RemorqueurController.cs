@@ -38,6 +38,16 @@ namespace AssWebApi.Controllers
             return db.Remorqueurs.Where(c => c.matricule.Equals(Remorqueur.matricule) && c.password.Equals(Remorqueur.password)).Count() > 0;
         }
 
+
+        [Route("api/Remorqueur/Interventions/{matricule}")]
+        public async Task<List<Intervention>> GetRemorInterventions(string matricule)
+        {
+
+            Remorqueur remorq= await db.Remorqueurs.Where(c => c.matricule.Equals(matricule)).Include(c => c.Interventions).FirstOrDefaultAsync();
+
+            return remorq.Interventions.ToList();
+        }
+
         // POST api/Remorqueur
         public async Task<Remorqueur> Post(Remorqueur Remorqueur)
         {

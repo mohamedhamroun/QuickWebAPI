@@ -1,6 +1,8 @@
 ﻿using AssWebApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -17,6 +19,7 @@ namespace AssWebApi.Controllers
         {
             return db.Alertes;
         }
+
 
         // GET api/Alerte/5
         public string Get(int id)
@@ -42,13 +45,45 @@ namespace AssWebApi.Controllers
         }
 
         // PUT api/Alerte/5
-        public void Put(int id, [FromBody]string value)
+        public Alerte Put(int id, Alerte Alerte)
         {
+            if (!ModelState.IsValid)
+            {
+                new Alerte();
+            }
+
+            if (id != Alerte.Id)
+            {
+                new Alerte();
+            }
+
+            db.Entry(Alerte).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+
+            }
+
+            return Alerte;
         }
 
         // DELETE api/Alerte/5
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            Alerte Alerte = db.Alertes.Find(id);
+            if (Alerte == null)
+            {
+                return false;
+            }
+
+            db.Alertes.Remove(Alerte);
+            db.SaveChanges();
+
+            return true;
         }
     }
 }

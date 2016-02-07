@@ -10,11 +10,11 @@ namespace AssWebApi.Models
     public class Intervention
     {
         [Key, Column(Order = 0)]
-        public string idclient { get; set; }
+        public int idalerte { get; set; }
         [Key, Column(Order = 1)]
         public string idremorq { get; set; }
         public string etat { get; set; }
-
+        public string date { get; set; }
         public virtual Remorqueur Remorqueur {get; set;}
         public virtual Alerte Alerte { get; set; }
     }

@@ -11,6 +11,7 @@ namespace AssWebApi.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string cin { get; set; }
+        public string date { get; set; }
         public string message { get; set; }
         public double longitude { get; set; }
         public double latitude { get; set; }

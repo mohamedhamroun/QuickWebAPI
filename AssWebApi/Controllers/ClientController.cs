@@ -26,6 +26,15 @@ namespace AssWebApi.Controllers
             return await db.Clients.FindAsync(id);
         }
 
+        [Route("api/client/Alertes/{cin}")]
+        public async Task<List<Alerte>> GetClientAlertes(string cin)
+        {
+            Client client= await db.Clients.Where(c => cin.Equals(c.cin)).Include(c => c.Alertes).FirstOrDefaultAsync();
+            return client.Alertes.ToList();
+        }
+
+
+
         [Route("api/client/Login")]
         public bool PostClientLogin(Client client)
         {
