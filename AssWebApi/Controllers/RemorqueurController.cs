@@ -41,12 +41,12 @@ namespace AssWebApi.Controllers
 
 
         [Route("api/Remorqueur/Interventions/{matricule}")]
-        public async Task<List<Intervention>> GetRemorInterventions(string matricule)
+        public async Task<List<Alerte>> GetRemorInterventions(string matricule)
         {
 
-            Remorqueur remorq= await db.Remorqueurs.Where(c => c.matricule.Equals(matricule)).Include(c => c.Interventions).FirstOrDefaultAsync();
+            Remorqueur remorq= await db.Remorqueurs.Where(c => c.matricule.Equals(matricule)).Include(c => c.Alertes).FirstOrDefaultAsync();
 
-            return remorq.Interventions.ToList();
+            return remorq.Alertes.ToList();
         }
 
         // POST api/Remorqueur

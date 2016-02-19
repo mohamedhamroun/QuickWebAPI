@@ -20,7 +20,7 @@ namespace AssWebApi.Models
         public DbSet<Client> Clients { get; set; }
         public DbSet<Remorqueur> Remorqueurs { get; set; }
         public DbSet<Alerte> Alertes { get; set; }
-        public DbSet<Intervention> Interventions { get; set; }
+        //public DbSet<Intervention> Interventions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -37,3 +37,5 @@ D:\Workspace\Assureur\AssWebApi\AssWebApi\bin\MySql.Data.Entity.EF6.dll
 D:\Workspace\Assureur\AssWebApi\AssWebApi\bin\MySql.Fabric.Plugin.dll
 D:\Workspace\Assureur\AssWebApi\AssWebApi\bin\MySql.Web.v20.dll
 D:\Workspace\Assureur\AssWebApi\AssWebApi\obj\Debug\AssWebApi.csprojResolveAssemblyReference.cache
+D:\Workspace\Assureur\AssWebApi\AssWebApi\obj\Debug\AssWebApi.Migrations.InitialCreate.resources
+D:\Workspace\Assureur\AssWebApi\AssWebApi\obj\Debug\AssWebApi.csproj.GenerateResource.Cache
