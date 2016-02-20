@@ -19,6 +19,6 @@ namespace AssWebApi.Models
         public double longitude { get; set; }
         public double latitude { get; set; }
 
-        public virtual ICollection<Alerte> Alertes { get; set; }
+        public  ICollection<Alerte> Alertes { get; set; }
     }
 }

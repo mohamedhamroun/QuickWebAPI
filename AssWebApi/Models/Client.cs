@@ -19,6 +19,6 @@ namespace AssWebApi.Models
         public string modele_veh { get; set; }
         public string marque_veh { get; set; }
 
-        public virtual ICollection<Alerte> Alertes { get; set; }
+        public  ICollection<Alerte> Alertes { get; set; }
     }
 }

@@ -8,9 +8,11 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace AssWebApi.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class ClientController : ApiController
     {
         quickContext db = new quickContext();
@@ -64,6 +66,8 @@ namespace AssWebApi.Controllers
         }
 
        [Route("api/client/Update/{cin}")]
+       //[AcceptVerbs("OPTIONS")]
+
         public Client PutClient(string cin, Client Client)
         {
             if (!ModelState.IsValid)
