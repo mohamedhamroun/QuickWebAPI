@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,11 +20,13 @@ namespace AssWebApi.Controllers
         // GET api/Remorqueur
         public IEnumerable<Remorqueur> Get()
         {
+         
             return db.Remorqueurs;
         }
 
+
         // GET api/Remorqueur/5
-        [Route("api/client/ByMatricule/{matricule}")]
+        [Route("api/Remorqueur/ByMatricule/{matricule}")]
         public async Task<Remorqueur> Get(string matricule)
         {
             return await db.Remorqueurs.FindAsync(matricule);
@@ -42,13 +45,22 @@ namespace AssWebApi.Controllers
         }
 
 
-        [Route("api/Remorqueur/Interventions/{matricule}")]
-        public async Task<List<Alerte>> GetRemorInterventions(string matricule)
+        [Route("api/Remorqueur/Interventions/{matricule}/{etat}")]
+        public async Task<List<Alerte>> GetRemorInterventions(string matricule,string etat)
         {
+            if(etat.Equals("All"))
+            {
+                Remorqueur remorq = await db.Remorqueurs.Where(c => c.matricule.Equals(matricule)).Include(c => c.Alertes).FirstOrDefaultAsync();
 
-            Remorqueur remorq= await db.Remorqueurs.Where(c => c.matricule.Equals(matricule)).Include(c => c.Alertes).FirstOrDefaultAsync();
+                return remorq.Alertes.ToList();
+            }
+            else
+            {
+                Remorqueur remorq = await db.Remorqueurs.Where(c => c.matricule.Equals(matricule)).Include(c => c.Alertes).FirstOrDefaultAsync();
 
-            return remorq.Alertes.ToList();
+                return remorq.Alertes.Where(a=>a.etat.Equals("Recherche Termine")).ToList();
+            }           
+           
         }
 
         // POST api/Remorqueur
@@ -115,5 +127,52 @@ namespace AssWebApi.Controllers
 
             return true;
         }
+
+        /*Call GetAllNearestFamousPlaces() method to get list of nearby places depending 
+    upon user current location.
+    Note: GetAllNearestFamousPlaces() method takes 2 parameters as input
+   that is GetAllNearestFamousPlaces(user_current_Latitude,user_current_Longitude) */
+
+         [Route("api/Remorqueur/Nearest/{id}")]
+        public List<Remorqueur> GetAllNearestFamousPlaces(int id)
+        {
+
+            Alerte alerte = db.Alertes.Find(id);
+            var distanceInMiles = 0.5;
+            var distanceInMeters = distanceInMiles * 1609.344;
+            DbGeography searchLocation = DbGeography.PointFromText(string.Format("POINT({0} {1})", -45, 45), 4326);
+
+     var nearbyLocations = 
+    (from location in db.Remorqueurs
+     where DbGeography.PointFromText("POINT(" + location.longitude + " " + location.latitude + ")",4326).Distance(searchLocation) < distanceInMeters
+     select new 
+     {
+         location
+     })
+    .ToList();
+
+            return new List<Remorqueur>();
+        }
+
+        private double Distance(double lat1, double lon1, double lat2, double lon2)
+        {
+            double theta = lon1 - lon2;
+            double dist = Math.Sin(deg2rad(lat1)) * Math.Sin(deg2rad(lat2)) + Math.Cos(deg2rad(lat1)) * Math.Cos(deg2rad(lat2)) * Math.Cos(deg2rad(theta));
+            dist = Math.Acos(dist);
+            dist = rad2deg(dist);
+            dist = (dist * 60 * 1.1515) / 0.6213711922;          //miles to kms
+            return (dist);
+        }
+
+        private double deg2rad(double deg)
+        {
+            return (deg * Math.PI / 180.0);
+        }
+
+        private double rad2deg(double rad)
+        {
+            return (rad * 180.0 / Math.PI);
+        }
+  
     }
 }

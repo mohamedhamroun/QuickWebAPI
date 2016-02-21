@@ -8,9 +8,11 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace AssWebApi.Controllers
 {
+     [EnableCors("*", "*", "*")]
     public class AlerteController : ApiController
     {
         quickContext db = new quickContext();
@@ -22,9 +24,10 @@ namespace AssWebApi.Controllers
 
 
         // GET api/Alerte/5
-        public string Get(int id)
+         [Route("api/Alerte/New")]
+        public IEnumerable<Alerte> GetNewAlertes()
         {
-            return "value";
+            return db.Alertes.Include(a => a.Client).Where(a => a.etat.Equals("Nouveau"));
         }
 
       

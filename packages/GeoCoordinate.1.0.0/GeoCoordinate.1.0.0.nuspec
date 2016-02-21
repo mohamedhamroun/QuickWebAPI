@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>GeoCoordinate</id>
+    <version>1.0.0</version>
+    <authors>Geoffrey Huntley</authors>
+    <owners>Geoffrey Huntley</owners>
+    <licenseUrl>https://github.com/ghuntley/geocoordinate/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/ghuntley/geocoordinate</projectUrl>
+    <iconUrl>https://i.imgur.com/OfoiwTs.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>GeoCoordinate is a Portable Class Library compatible implementation of System.Device.Location.GeoCoordinate. It is an exact 1:1 API compliant implementation and will be supported until MSFT sees it fit to embed the type. Which at that point this implementation will cease development/support and you will be able to simply remove this package and everything will still work.</description>
+    <summary>GeoCoordinate is a Portable Class Library compatible implementation of System.Device.Location.GeoCoordinate. It is an exact 1:1 API compliant implementation and will be supported until MSFT sees it fit to embed the type. Which at that point this implementation will cease development/support and you will be able to simply remove this package and everything will still work.</summary>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright Geoffrey Huntley 2016</copyright>
+    <tags>GeoCoordinate GeoCoordinatePortable system.device.location.geocoordinate</tags>
+    <dependencies>
+      <group targetFramework=".NETPortable0.0-win81+wpa81" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
