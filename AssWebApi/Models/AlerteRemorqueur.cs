@@ -7,15 +7,13 @@ using System.Web;
 
 namespace AssWebApi.Models
 {
-    public class Intervention
-    {
-        [Key, Column(Order = 0)]
-        public int idalerte { get; set; }
-        [Key, Column(Order = 1)]
+      public class AlerteRemorqueur
+      {
+        public int Id { get; set; }
+        public int idalerte { get; set; } 
         public string idremorq { get; set; }
-        public string etat { get; set; }
-        public string date { get; set; }
+
         public virtual Remorqueur Remorqueur {get; set;}
-        public virtual Alerte Alerte { get; set; }
-    }
+        public  Alerte Alerte { get; set; }
+     }
 }

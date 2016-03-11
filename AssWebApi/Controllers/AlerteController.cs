@@ -30,6 +30,12 @@ namespace AssWebApi.Controllers
             return db.Alertes.Include(a => a.Client).Where(a => a.etat.Equals("Nouveau"));
         }
 
+         // GET api/Alerte/5
+         [Route("api/Alerte/Sent")]
+         public IEnumerable<Alerte> GetSentAlertes()
+         {
+             return db.Alertes.Include(a => a.Client).Where(a => a.etat.Equals("Envoyee"));
+         }
       
         // POST api/Alerte
         public async Task<Alerte> Post(Alerte Alerte)

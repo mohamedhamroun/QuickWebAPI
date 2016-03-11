@@ -7,13 +7,13 @@ namespace AssWebApi.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addingvehiculesparametres : IMigrationMetadata
+    public sealed partial class Addingnewtable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addingvehiculesparametres));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Addingnewtable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602012200540_adding vehicules parametres "; }
+            get { return "201603112038256_Adding new table"; }
         }
         
         string IMigrationMetadata.Source

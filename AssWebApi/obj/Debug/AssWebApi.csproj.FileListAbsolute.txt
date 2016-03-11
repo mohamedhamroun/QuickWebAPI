@@ -46,6 +46,6 @@ D:\Workspace\Assureur\AssWebApi\AssWebApi\bin\GeoCoordinatePortable.dll
 D:\Workspace\Assureur\AssWebApi\AssWebApi\bin\GeoCoordinatePortable.pdb
 D:\Workspace\Assureur\AssWebApi\AssWebApi\bin\GeoCoordinatePortable.xml
 D:\Workspace\Assureur\AssWebApi\AssWebApi\bin\System.Device.Portable.dll
-D:\Workspace\Assureur\AssWebApi\AssWebApi\bin\MySql.Data.CF.dll
 D:\Workspace\Assureur\AssWebApi\AssWebApi\bin\MySql.Data.dll
-D:\Workspace\Assureur\AssWebApi\AssWebApi\bin\MySql.Data.Entity.dll
+D:\Workspace\Assureur\AssWebApi\AssWebApi\obj\Debug\AssWebApi.Migrations.Addingnewtable.resources
+D:\Workspace\Assureur\AssWebApi\AssWebApi\obj\Debug\AssWebApi.Migrations.addingtable.resources
